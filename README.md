@@ -23,7 +23,7 @@ As true to the paper as I could. This means eight layers of weights, the first f
 * Layer 5: 256 3x3x192 kernels,
 * Fully connected layers have 4096 neurons each.
 
-It's worth noting that for AlexNet, the kernels of the second, fourth, and fifth convolutional layers are connected only to those kernel maps in the previous layer which reside on the same GPU. The kernels of the third convolutional layer are connected to all kernel maps in the second layer. I'm training on my MacBook Pro (M1 Max, 32GB) and have no need to split GPUs but to try and be faithful, I will simulate this split using groups in PyTorch.
+It's worth noting that for AlexNet, the kernels of the second, fourth, and fifth convolutional layers are connected only to those kernel maps in the previous layer which reside on the same GPU. I'm training on my MacBook Pro (M1 Max, 32GB) and have no need to split GPUs but to try and be faithful, I will simulate this split using groups in PyTorch.
 
 This otherwise means basically whatever else was done in the paper idk man you can read it.
 
