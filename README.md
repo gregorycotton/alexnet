@@ -33,9 +33,12 @@ There are some differences in my implementation worth noting, specifically:
 Otherwise I tried to basically do whatever was done in the paper idk man you can read it.
 
 ## Results & additional considerations
-As I am up-scaling images from 32x32 to 224x224, there is a negative impact on expected accuracy (11x11 kernel looking for meaningful features is looking at blurry interpolated slop). To try and quantify the degree to which I've traded faithfulness to the paper for performance, I retrained the model with no image up-scaling and an more appropriately sized kernel for the 32x32px images (pooling layers adjusted as well: all the changes made for this purpose are in the commented in the model.py file). Comparison below between the faithful versus optimized model. 
+As I am up-scaling images from 32x32 to 224x224, there is a negative impact on expected accuracy (11x11 kernel looking for meaningful features is looking at blurry interpolated slop). To try and quantify the degree to which I've traded faithfulness to the paper for performance, I retrained the model with no image up-scaling and an more appropriately sized kernel for the 32x32px images (pooling layers adjusted as well: all the changes made for this purpose are in the commented in the model.py file). Quick comparison below between the faithful versus optimized model. 
 
-[i WILL do this]
+| Model        | Best Validation Accuracy | Avg. Time per Epoch |
+|--------------|--------------------------|---------------------|
+| Old faithful | 76.56%                   | ~760 seconds        |
+| Optimized    | TBD                      | TBD                 |
 
 Note: the code in this repo is the faithful model.
 
