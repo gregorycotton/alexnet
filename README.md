@@ -25,18 +25,16 @@ True to the paper; eight layers of weights, the first five being convolutional l
 
 There are some differences in my implementation worth noting, specifically:
 * As mentioned above, using CIFAR-10 instead of ImageNet for dataset. This also means instead of 1,000 image classes I use 10,
-* To keep the same input dimensions from the paper, the 32x32px CIFAR-10 images were upscales to 224x224 before feeding them into the network,
-* Hinton and company use a specific custom initialization (weights from a 0.01 std dev Gaussian and biases set to 0 or 1). Doing this meant my model failed to learn the dataset, so I'm using the PyTorch default Kaiming initialization,
-* No GPU split: I simulated this using PyTorch groups, but the model was ultimately trained on my MBP M1 Max,
+* To keep the same input dimensions from the paper, the 32x32px CIFAR-10 images were upscaled to 224x224 before feeding them into the network,
+* AlexNet uses a specific custom initialization (weights from a 0.01 std dev Gaussian and biases set to 0 or 1). Doing this meant my model failed to learn the dataset, so I'm using the PyTorch default Kaiming initialization,
+* No GPU split: I simulated this using PyTorch groups, but the model was ultimately trained on my MBP M1 Max 32GB so no need to split,
 * Hinton et al. manually monitored the validation error and "\[divided] the learning rate by 10 when the validation error rate stopped improving with the current learning rate": I am instead using a scheduler that automatically cuts the learning rate at epochs 5 and 8.
-
-Otherwise I tried to basically do whatever was done in the paper idk man you can read it.
 
 ## Results
 TLDR, best validation accuracy of 76.56% with an average time of 760.33s (~12.7 mins) per epoch. Graphs and examples and such are stored in this repo's `results` folder.
 
 ## Setup
-Requirements for training and running the model are all in `requirements.txt` (you'll need to add matplotlib for generating plots).
+Requirements for training and running the model are all in `requirements.txt` (you'll need to add matplotlib (and write some python) for generating plots if you want that).
 1. Clone the repo, create your venv, install the dependencies,
 2. My implementation uses a custom data loader that parses raw CIFAR-10 python binary files. You'll need to download and extract the data from `cifar-10-python.tar.gz`. You should get a folder titled `cifar-10-batches-py`, which you should store in a new folder named `data` in the project's root,
 3. Run the training script (have made it hardware agnostic), wait a little while, then give it a try.
