@@ -1,11 +1,11 @@
+*.pyc
+*.pth
+*.pt
 venv/
 data/
 tests/
 __pycache__/
-*.pyc
 .DS_Store
-*.pth
-*.pt
 .vscode/
 .idea/
 plots.py
