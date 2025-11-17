@@ -64,7 +64,9 @@ class AlexNet(nn.Module):
             # The 1000-way softmax is inside nn.CrossEntropyLoss
         )
         
-        # This is fuckin my shit up rn
+        # Using the custom initialiation from the paper caused the model failed to learn the dataset.
+        # Removing this and using the PyTorch default Kaiming initialization.
+        # ------------
         # self.apply(self._init_weights)
 
     def forward(self, x):
@@ -75,29 +77,18 @@ class AlexNet(nn.Module):
         x = self.classifier(x)
         return x
 
-    # get rid of this too
+    # Custom initialization that failed (see above comment), left for reference:
+    # ------------
     # def _init_weights(self, module):
-    #     """
-    #     Initializes weights and biases as described in the AlexNet paper.
-    #     Weights: zero-mean Gaussian with std 0.01
-    #     Biases: 0 for Conv 1, 3.
-    #             1 for Conv 2, 4, 5 and all FC layers.
-    #     """
-        
     #     if isinstance(module, nn.Conv2d):
-    #         # Initialize weights
     #         nn.init.normal_(module.weight, mean=0.0, std=0.01)
             
     #         if module.bias is not None:
-    #             # Check if groups=2
     #             if module.groups == 2:
     #                 nn.init.constant_(module.bias, 1.0)
     #             else:
     #                 nn.init.constant_(module.bias, 0.0)
-
-    #     # Check if fully connected
     #     elif isinstance(module, nn.Linear):
     #         nn.init.normal_(module.weight, mean=0.0, std=0.01)
-            
     #         if module.bias is not None:
     #             nn.init.constant_(module.bias, 1.0)

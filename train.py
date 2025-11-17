@@ -19,7 +19,6 @@ MODEL_SAVE_PATH = "alexnet_cifar10.pth"
 
 # I'm using my MacBook Pro M1 Max 32GB but I'm gonna make it hardware agnostic
 def get_default_device():
-    """Pick GPU if available, else CPU"""
     if torch.cuda.is_available():
         print("Using CUDA (NVIDIA GPU)")
         return torch.device('cuda')
