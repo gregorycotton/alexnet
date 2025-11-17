@@ -33,7 +33,33 @@ There are some differences in my implementation worth noting, specifically:
 Otherwise I tried to basically do whatever was done in the paper idk man you can read it.
 
 ## Results
-text
+TLDR, best validation accuracy of 76.56% with an average time of 760.33s (~12.7 mins) per epoch. Graphs and examples and such are stored in this repo's `results` folder.
 
 ## Setup
-text
+Requirements for training and running the model are all in `requirements.txt` (you'll need to add matplotlib for generating plots).
+1. Clone the repo, create your venv, install the dependencies,
+2. My implementation uses a custom data loader that parses raw CIFAR-10 python binary files. You'll need to download and extract the data from `cifar-10-python.tar.gz`. You should get a folder titled `cifar-10-batches-py`, which you should store in a new folder named `data` in the project's root,
+3. Run the training script (have made it hardware agnostic), wait a little while, then give it a try.
+
+When all is said and done your project structure should look something like the below.
+
+```text
+alexnet/
+├── .gitignore
+├── README.md
+├── requirements.txt
+├── venv/                        
+├── data/
+│   └── cifar-10-batches-py/     
+│       ├── batches.meta
+│       ├── data_batch_1
+│       ├── data_batch_2
+│       ├── data_batch_3
+│       ├── data_batch_4
+│       ├── data_batch_5
+│       └── test_batch
+├── dataset.py                   
+├── model.py                     
+├── train.py                     
+├── predict.py                  
+└── alexnet_cifar10.pth          
